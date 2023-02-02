@@ -5,9 +5,13 @@ export default function Document() {
     <Html lang="en">
       <Head />
       <body>
-        <Main />
+        <Main className="bgred"/>
         <NextScript />
       </body>
+      <footer className="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" >Frontend Mentor</a>.
+      Coded by <a href="#">Salman Hossain</a>.
+  </footer>
     </Html>
   )
 }

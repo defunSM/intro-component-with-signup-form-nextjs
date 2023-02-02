@@ -1,0 +1,147 @@
+@import url('https://fonts.google.com/specimen/Poppins');
+
+
+.left {
+  width: 36rem;
+}
+
+.pricing {
+  border-radius: 0.5rem;
+  background-color: #5D54A2 ;
+  width: 30rem;
+  margin: 1rem 1rem 1.5rem 1rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0rem 0.5rem 0px rgba(207, 79, 76, 0.5);
+}
+
+#boldstyle {
+  font-weight: 800;
+  margin-right: 0.2rem;
+}
+
+#redcolor {
+  color: hsl(0, 100%, 74%);
+  margin-left: 0.2rem;
+  font-weight: 700;
+}
+
+#bgred {
+  background-color: hsl(0, 100%, 74%)
+}
+
+
+
+.terms {
+  font-size: 0.8rem;
+  color: lightgrey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signupform {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  background-color: white;
+  color: black;
+  padding: 1rem;
+  margin: 1rem;
+  box-shadow: 0rem 0.5rem 0px rgba(207, 79, 76, 0.5);
+}
+
+.submit {
+  border-style: solid;
+  outline: hsl(154, 59%, 51%);
+  border-radius: 0.2rem;
+  background-color: hsl(154, 59%, 51%);
+  border-color: hsl(154, 59%, 51%);
+  font-weight: 700;
+  color: white;
+  padding: 1rem;
+  margin: 1rem 1rem 0.5rem 1rem;
+}
+
+.submit:hover {
+  background-color: hsl(154, 59%, 45%);
+  cursor: pointer;
+}
+
+.attribution { font-size: 11px; text-align: center; }
+.attribution a { color: hsl(228, 45%, 44%); }
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  min-height: 100vh;
+  column-gap: 3rem;
+  background-image: url('/bg-intro-desktop.png');
+  background-color: hsl(0, 100%, 74%);
+}
+
+@media (max-width: 75rem) {
+  .container {
+    flex-direction: column;
+    background-image: url('/bg-intro-mobile.png');
+    background-color: hsl(0, 100%, 74%);
+  }
+
+  .left {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    align-items: center;
+    overflow-wrap: break-word;
+  }
+
+  .header {
+    text-align: center;
+  }
+
+  .description {
+    text-align: center;
+  }
+
+  .warningicon1 {
+
+    margin-left: 26.5rem;
+    margin-top: 2.2rem;
+    position: absolute;
+
+    top:50%;
+  }
+
+  .warningicon2 {
+
+    margin-left: 26.5rem;
+    margin-top: 6.5rem;
+    position: absolute;
+
+    top:50%;
+  }
+
+  .warningicon3 {
+
+    margin-left: 26.5rem;
+    margin-top: 10.8rem;
+    position: absolute;
+
+    top:50%;
+  }
+
+  .warningicon4 {
+
+    margin-left: 26.5rem;
+    margin-top: 15.1rem;
+    position: absolute;
+
+    top:50%;
+  }
+
+}
+
