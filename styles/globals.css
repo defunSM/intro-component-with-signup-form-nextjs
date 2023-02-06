@@ -27,7 +27,6 @@ input {
   margin-right: 1rem;
   font-weight: 600;
   text-decoration: none;
-  background-image: url('/warning.svg');
   background-repeat: no-repeat;
   background-position: 25rem;
   background-size: 2rem;
@@ -41,9 +40,13 @@ input[type="text"], input[type="password"], input[type="email"] {
 }
 
 input:focus {
-  border-color: black;
+
   outline: black;
 }
+
+/* input:invalid:focus {
+  border: 2px solid hsl(0, 100%, 74%);
+} */
 
 svg {
   color: hsl(0, 100%, 74%);

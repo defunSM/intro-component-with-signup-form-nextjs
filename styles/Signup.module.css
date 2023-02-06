@@ -28,10 +28,19 @@
   font-weight: 700;
 }
 
+.redcolor {
+  color: hsl(0, 100%, 74%);
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
 #bgred {
   background-color: hsl(0, 100%, 74%)
 }
 
+.warning-color input {
+  border-color: hsl(0, 100%, 74%) !important;
+}
 
 
 .terms {

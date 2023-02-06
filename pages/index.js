@@ -3,9 +3,14 @@ import { Inter } from '@next/font/google'
 import styles from '@/styles/Signup.module.css'
 import { useState } from 'react'
 
-const inter = Inter({ subsets: ['latin'] })
+import { validateEmail, validatePassword, validateFirstName, validateLastName } from './validation'
 
-
+// Error text that appears under input if the field is not valid
+function ErrorText(props) {
+  return (<>
+    <div className={props.form.validate[props.id] ? "hidden" : "visible" + " text-right mr-5 " + styles.redcolor}>{props.text}</div>
+  </>)
+}
 
 export default function Home() {
 
@@ -13,33 +18,49 @@ export default function Home() {
     firstname: "",
     lastname: "",
     email: "",
-    password: ""
+    password: "",
+    validate: [true, true, true, true],
   })
 
-  function handleFirstNameChange(e) {
-    setForm({...form, firstname: e.target.value})
-  }
+  // client side validation on input change
+  function handleFormChange(e) {
+    const field = e.target.id
+    const newInputValue = e.target.value
+    const formValidation = form.validate
 
-  function handleLastNameChange(e) {
-    setForm({...form, lastname: e.target.value})
-  }
-
-  function handleEmailChange(e) {
-    setForm({...form, email: e.target.value})
-  }
-
-  function handlePasswordChange(e) {
-    setForm({...form, password: e.target.value})
-  }
-
-  function validatePassword(password) {
-    if (password.length > 8) {
-      return true
-    } else {
-      return false
+    switch(field) {
+      case 'firstname':
+        formValidation[0] = validateFirstName(newInputValue);
+        setForm({...form, firstname: newInputValue, validate: formValidation })
+        break;
+      case 'lastname':
+        formValidation[1] = validateLastName(newInputValue);
+        setForm({...form, lastname: newInputValue, validate: formValidation })
+        break;
+      case 'email':
+        formValidation[2] = validateEmail(newInputValue);
+        setForm({...form, email: newInputValue, validate: formValidation })
+        break;
+      case 'password':
+        formValidation[3] = validatePassword(newInputValue);
+        setForm({...form, password: newInputValue, validate: formValidation })
+        break;
     }
   }
 
+  // client side validation on submission
+  function validateFormOnSubmittion() {
+
+    const validPass = validatePassword(form.password)
+    const validFirstname = validateFirstName(form.firstname)
+    const validLastName = validateLastName(form.lastname)
+    const validEmail = validateEmail(form.email)
+
+    setForm({...form, validate: [validFirstname, validLastName, validEmail, validPass]})
+
+  }
+
+  const warningImage = "bg-[url('/warning.svg')] warning-color"
 
   return ( <>
       <Head>
@@ -62,12 +83,19 @@ export default function Home() {
       <div className={styles.pricing}><span id={styles.boldstyle}>Try it free 7 days</span> then $20/mo. thereafter</div>
       <form action={console.log("submit")} className={styles.signupform}>
 
-          <input className={styles.firstname} onChange={(e) => handleFirstNameChange(e)} placeholder="First Name" type="text" value={form.firstname} validation="fix this" required ></input>
+          <input id="firstname" className={form.validate[0] ? "" : warningImage} onChange={(e) => handleFormChange(e)} placeholder="First Name" type="text" value={form.firstname} validation="fix this" required></input>
+          <ErrorText form={form} id={0} text="first name can not be empty"></ErrorText>
 
-          <input onChange={(e) => handleLastNameChange(e)} placeholder="Last Name" type="text" required />
-          <input onChange={(e) => handleEmailChange(e)} placeholder="Email Address" type="email" required />
-          <input onChange={(e) => handlePasswordChange(e)} placeholder="Password" type="password" minlength="8" required />
-          <button className={styles.submit} type="submit" value="Submit">CLAIM YOUR FREE TRIAL</button>
+          <input className={form.validate[1] ? "" : warningImage} id="lastname" onChange={(e) => handleFormChange(e)} placeholder="Last Name" type="text" validationMessage="Need a non-empty first name." required />
+          <ErrorText form={form} id={1} text="last name can not be empty"></ErrorText>
+
+          <input className={form.validate[2] ? "" : warningImage} id="email" onChange={(e) => handleFormChange(e)} placeholder="Email Address" type="email" required />
+          <ErrorText form={form} id={2} text="looks like this is not an email"></ErrorText>
+
+          <input className={form.validate[3] ? "" : warningImage} id="password" onChange={(e) => handleFormChange(e)} placeholder="Password" type="password" customError="Please enter a password with more than 8 characters" minLength="8" required />
+          <ErrorText form={form} id={3} text="password can not be empty"></ErrorText>
+
+          <button className={styles.submit} type="submit" value="Submit" onClick={() => validateFormOnSubmittion()}>CLAIM YOUR FREE TRIAL</button>
           <p className={styles.terms}>By clicking the button, you are agreeing to our <span id={styles.redcolor}>Terms and Services</span></p>
 
       </form>
