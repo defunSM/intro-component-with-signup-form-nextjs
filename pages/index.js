@@ -3,7 +3,7 @@ import { Inter } from '@next/font/google'
 import styles from '@/styles/Signup.module.css'
 import { useState } from 'react'
 
-import { validateEmail, validatePassword, validateFirstName, validateLastName } from './validation'
+import { validateEmail, validatePassword, validateFirstName, validateLastName } from '../logic/validation'
 
 // Error text that appears under input if the field is not valid
 function ErrorText(props) {
