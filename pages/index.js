@@ -70,7 +70,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
- <div className={styles.container}>
+ <main className={styles.container}>
       <div className={styles.left}>
         <h1 className={styles.header}>Learn to code by watching others</h1>
         <p className={styles.description}>
@@ -83,16 +83,16 @@ export default function Home() {
       <div className={styles.pricing}><span id={styles.boldstyle}>Try it free 7 days</span> then $20/mo. thereafter</div>
       <form action={console.log("submit")} className={styles.signupform}>
 
-          <input id="firstname" className={form.validate[0] ? "" : warningImage} onChange={(e) => handleFormChange(e)} placeholder="First Name" type="text" value={form.firstname} validation="fix this" required></input>
+          <input id="firstname" className={form.validate[0] ? "" : warningImage} onChange={(e) => handleFormChange(e)} placeholder="First Name" type="text" value={form.firstname} required></input>
           <ErrorText form={form} id={0} text="first name can not be empty"></ErrorText>
 
-          <input className={form.validate[1] ? "" : warningImage} id="lastname" onChange={(e) => handleFormChange(e)} placeholder="Last Name" type="text" validationMessage="Need a non-empty first name." required />
+          <input className={form.validate[1] ? "" : warningImage} id="lastname" onChange={(e) => handleFormChange(e)} placeholder="Last Name" type="text" required />
           <ErrorText form={form} id={1} text="last name can not be empty"></ErrorText>
 
           <input className={form.validate[2] ? "" : warningImage} id="email" onChange={(e) => handleFormChange(e)} placeholder="Email Address" type="email" required />
           <ErrorText form={form} id={2} text="looks like this is not an email"></ErrorText>
 
-          <input className={form.validate[3] ? "" : warningImage} id="password" onChange={(e) => handleFormChange(e)} placeholder="Password" type="password" customError="Please enter a password with more than 8 characters" minLength="8" required />
+          <input className={form.validate[3] ? "" : warningImage} id="password" onChange={(e) => handleFormChange(e)} placeholder="Password" type="password" minLength="8" required />
           <ErrorText form={form} id={3} text="password can not be empty"></ErrorText>
 
           <button className={styles.submit} type="submit" value="Submit" onClick={() => validateFormOnSubmittion()}>CLAIM YOUR FREE TRIAL</button>
@@ -100,7 +100,7 @@ export default function Home() {
 
       </form>
     </div>
-  </div>
+  </main>
     </>
   )
 }
